@@ -5,6 +5,7 @@ Punch For Glory is a kind of arcade game. In this game, the player starts the ga
 References:
 
 •	Punch Club (Game) (http://store.steampowered.com/app/394310/)
+
 We get the project’s idea from the “Punch Club” game. We are using the idea of this game as our game’s base. We will use some contents of “Punch Club” game. However, in our project, we will try to simplify that game, and make our own game.
 
 
