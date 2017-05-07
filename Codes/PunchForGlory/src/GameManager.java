@@ -33,6 +33,8 @@ public class GameManager extends JPanel{
 		objectManager = new ObjectManager();
 		objectManager.createBoxer( "Butterfly");
 		objectManager.createSkillSet();
+		objectManager.createItemList();
+
 
 		//assignment of character properties
 		health = objectManager.getBoxerHealth();
@@ -57,7 +59,7 @@ public class GameManager extends JPanel{
 		setTime(time);
 
 		mapManager.setStreetSkill1Button(objectManager.skills[0].getName());
-
+		setStoreItems();
 		// add mapManager object to panel
 		add(mapManager);
 	}
@@ -188,6 +190,9 @@ public class GameManager extends JPanel{
 	}
 	public JButton getRemoveButton(){
 		return mapManager.getRemoveButton();
+	}
+	public JButton getSkillButton(){
+		return mapManager.getSkillButton();
 	}
 	// calculate the attack power and new health values and send this information to mapManager class
 	public void arenaAttackSkill1(){
@@ -453,6 +458,9 @@ public class GameManager extends JPanel{
 			Item item = mapManager.getRemoveItem();
 			objectManager.removeItemFromInventory( item.getName());
 			removeBoxerItem();
+			int newMoney = objectManager.getMoney();
+			newMoney = newMoney + item.getMoney() / 2;
+			mapManager.printMoney( newMoney);
 		}
 	}
 	public void removeBoxerItem(){
@@ -471,7 +479,9 @@ public class GameManager extends JPanel{
 		else
 			mapManager.updateOpenPlaces();
 	}
-	public JButton getSkillButton(){
-		return mapManager.getSkillButton();
+	public void setStoreItems(){
+		Item[] itemlist;
+		itemlist = objectManager.getItemlist();
+		mapManager.setStoreItems(itemlist);
 	}
 }

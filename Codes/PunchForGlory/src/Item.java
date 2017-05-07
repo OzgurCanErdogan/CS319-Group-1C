@@ -3,9 +3,13 @@ import java.lang.String;
 public class Item{
 	private int str, agi, vit, money;
 	private String name;
-	Item( String nameInput){
+	Item( String nameInput, int strength, int agility, int vitality, int moneyInput){
 		name = nameInput;
-		if( name.equals("Knife")){
+		str = strength;
+		agi = agility;
+		vit = vitality;
+		money = moneyInput;
+		/*if( name.equals("Knife")){
 			str = 4;
 			agi = 2;
 			vit = 1;
@@ -68,21 +72,31 @@ public class Item{
 			agi = 0;
 			vit = 4;
 			money = 110;
-		}
+		}*/
+
 
 	}
 	public int getEffect(){
 		int effect = str * 1 + agi * 1 + vit * 1;
 		return effect;
-	}	
+	}
 	public String toString(){
 		String temp = name + ": str +" + str + ", agi +" + agi + ", vit +" + vit + ".  Costs: " + money + " TL";
 		return temp;
 	}
 	public int getMoney(){
 		return money;
-	}	
+	}
 	public String getName(){
 		return name;
+	}
+	public int getStrength(){
+		return str;
+	}
+	public int getAgility(){
+		return agi;
+	}
+	public int getVitality(){
+		return vit;
 	}
 }

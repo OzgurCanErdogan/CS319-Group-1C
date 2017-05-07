@@ -3,9 +3,37 @@ import java.lang.String;
 public class ObjectManager{
 	Boxer boxer;
 	Item item;
-	Skill[] skills = new Skill[8];
+	Skill[] skills;
+	Item[] itemlist;
 	ObjectManager(){
+		skills = new Skill[8];
+		itemlist = new Item[11];
 
+	}
+	public void createItemList(){
+		Item knife = new Item("Knife", 4, 2, 1, 100);
+		Item stick = new Item("Stick", 3, 2, 2, 75);
+		Item red_gloves = new Item("Red gloves", 2, 1, 3, 80);
+    Item blue_gloves = new Item("Blue gloves", 1, 4, 1, 80);
+    Item green_gloves = new Item("Green gloves", 5, 0, 1, 80);
+    Item glorious_gloves = new Item("Glorious gloves", 5, 4, 3, 370);
+    Item bandage_1 = new Item("Standard bandage", 1, 1, 1, 20);
+    Item bandage_2 = new Item("High Quality bandage", 3, 3, 3, 120);
+    Item headgear = new Item("Normal headgear", 1, 1, 2, 60);
+    Item helmet = new Item("Rocky's headgear", 1, 0, 4, 110);
+    Item knuckle = new Item("Knuckle", 3, 1, 1, 50);
+
+		itemlist[0] = knife;
+		itemlist[1] = stick;
+		itemlist[2] = red_gloves;
+		itemlist[3] = blue_gloves;
+		itemlist[4] = green_gloves;
+		itemlist[5] = glorious_gloves;
+		itemlist[6] = bandage_1;
+		itemlist[7] = bandage_2;
+		itemlist[8] = headgear;
+		itemlist[9] = helmet;
+		itemlist[10] = knuckle;
 
 	}
 	public void createSkillSet(){
@@ -82,9 +110,10 @@ public class ObjectManager{
 	public int getItemNumber(){
 		return boxer.getItemNumber();
 	}
-	public void addItemToInventory( String itemName){ 
-		item = new Item( itemName);
-		boxer.addItem( item);
+	public void addItemToInventory( String itemName){
+		item = findItem( itemName);
+		if( item != null)
+			boxer.addItem( item);
 	}
 	public void removeItemFromInventory( String itemName){
 		boxer.removeItem( itemName);
@@ -104,6 +133,16 @@ public class ObjectManager{
 	public Item[] getBoxerItems(){
 		return boxer.getItems();
 	}
-
+	public Item[] getItemlist(){
+		return itemlist;
+	}
+	public Item findItem( String itemName){
+		for( int i = 0; i < itemlist.length; i++){
+			if( itemlist[i].getName().equals( itemName)){
+				return itemlist[i];
+			}
+		}
+		return null;
+	}
 
 }

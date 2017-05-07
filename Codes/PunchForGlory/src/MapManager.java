@@ -318,4 +318,7 @@ public class MapManager extends JPanel{
 	public void streetOpponentAttackEffect(){
 		street.opponentAttackEffect();
 	}
+	public void setStoreItems( Item[] itemlist){
+		store.setStoreItems(itemlist);
+	}
 }

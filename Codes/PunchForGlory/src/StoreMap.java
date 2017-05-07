@@ -20,7 +20,7 @@ public class StoreMap extends JPanel{
 		setLayout(null);
 		mouseListener = mouselistener;
 
-		moneyLabel = new JLabel( "Your Money: ");		
+		moneyLabel = new JLabel( "Your Money: ");
 		storeLabel = new JLabel( "Store Items");
 		yourItemsLabel = new JLabel( "Your Items");
 		back = new JButton("Back");
@@ -29,17 +29,17 @@ public class StoreMap extends JPanel{
 
 		back.addMouseListener( mouseListener);
 		buy.addMouseListener( mouseListener);
-		remove.addMouseListener( mouseListener);	
+		remove.addMouseListener( mouseListener);
 
 		moneyLabel.setBounds( 100, 50, 300, 50);
 		storeLabel.setBounds( 100, 100, 200, 50);
 		buy.setBounds( 100, 220, 100, 50);
 		yourItemsLabel.setBounds( 100, 280, 300, 50);
 		back.setBounds( 100, 460, 100, 50);
-		remove.setBounds( 100, 390 , 100, 50);		
-
+		remove.setBounds( 100, 390 , 100, 50);
+/*
 		Item knife = new Item("Knife");
-		Item stick = new Item("Stick");	
+		Item stick = new Item("Stick");
 		Item red_gloves = new Item("Red gloves");
         Item blue_gloves = new Item("Blue gloves");
         Item green_gloves = new Item("Green gloves");
@@ -63,12 +63,13 @@ public class StoreMap extends JPanel{
         itemList.addItem(bandage_2);
         itemList.addItem(headgear);
         itemList.addItem(helmet);
-
+*/
+		itemList = new JComboBox<Item>();
 		itemList.setBounds( 100, 150, 400, 50);
-		
+
 		boxerItems = new JComboBox<Item>();
 		boxerItems.setBounds( 100, 320, 400, 50);
-		
+
 		add(boxerItems);
 		add( remove);
 		add(yourItemsLabel);
@@ -101,5 +102,10 @@ public class StoreMap extends JPanel{
 	}
 	public void removeBoxerItem(){
 		boxerItems.removeItemAt( boxerItems.getSelectedIndex());
+	}
+	public void setStoreItems( Item[] itemlist){
+		for( int i = 0; i< itemlist.length; i++){
+			itemList.addItem(itemlist[i]);
+		}
 	}
 }
