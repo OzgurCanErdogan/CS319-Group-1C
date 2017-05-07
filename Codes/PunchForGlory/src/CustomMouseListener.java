@@ -1,5 +1,5 @@
-import java.awt.*;  
-import javax.swing.*;  
+import java.awt.*;
+import javax.swing.*;
 import java.net.URL;
 import java.awt.event.*;
 import javax.swing.border.Border;
@@ -13,14 +13,14 @@ class CustomMouseListener implements MouseListener{
 		game = g;
 	}
 		public void mouseClicked(MouseEvent e){
-		
+
 			x = e.getX();
 			y = e.getY();
-				
-			// used methods when mouse is clicked somewhere on map	
+
+			// used methods when mouse is clicked somewhere on map
 			if( x < 350 && x > 320 && y < 150 && y > 110){
 				game.changePlace( "home");
-				
+
 			}else if( x < 160 && x> 100 && y < 310 && y> 260){
 					// work
 				if(game.isOpen())
@@ -31,7 +31,7 @@ class CustomMouseListener implements MouseListener{
 				game.resetArena();
 				game.changePlace( "arena");
 			}else if( x < 580 && x > 530 && y < 305 && y > 245){
-				// gym	
+				// gym
 				if( game.isOpen())
 					game.changePlace( "gym");
 			}else if( x < 660 && x > 605 && y < 110 && y > 55 ){
@@ -39,7 +39,7 @@ class CustomMouseListener implements MouseListener{
 				game.resetStreet();
 				game.changePlace( "street");
 			}else if( x < 800 && x > 750 && y < 305 && y > 245){
-				// store	
+				// store
 				if( game.isOpen()){
 					game.printMoney();
 					game.changePlace( "store");
@@ -47,6 +47,14 @@ class CustomMouseListener implements MouseListener{
 				}
 			// used methods when mouse is clicked on a button
 			// gym buttons
+		}else if (e.getSource() == game.getSkillButton()){
+				System.out.print("test");
+				game.changePlace("skill");
+
+
+			} else if(e.getSource() == game.getSkillBackButton()){
+				game.changePlace("map");
+
 			}else if( e.getSource() == game.getGymBackButton()){
 				game.updateClosedPlaces();
 				game.changePlace( "map");
@@ -57,7 +65,7 @@ class CustomMouseListener implements MouseListener{
 					game.updateClosedPlaces();
 					game.changePlace("map");
 				}
-			}else if(e.getSource() == game.getGymDoIt2Button()){				
+			}else if(e.getSource() == game.getGymDoIt2Button()){
 				game.setTime(game.getTime() + 2);
 				game.setAgi( game.getAgi() + 1);
 				if( !game.isOpen()){
@@ -72,7 +80,7 @@ class CustomMouseListener implements MouseListener{
 					game.changePlace("map");
 				}
 			// home buttons
-			}else if( e.getSource() == game.getHomeBackButton()){	
+			}else if( e.getSource() == game.getHomeBackButton()){
 				game.updateClosedPlaces();
 				game.changePlace( "map");
 			}else if(e.getSource() == game.getHomeSleepButton()){

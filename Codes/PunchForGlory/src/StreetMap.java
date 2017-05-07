@@ -5,28 +5,39 @@ import java.awt.event.*;
 import javax.swing.border.Border;
 public class StreetMap extends JPanel{
 	//Image gymImage;
-	Image arenaImage;
-	Image boxer;
-	Image opponent;
-	JButton skill1;
-	JButton skill2;
-	JButton skill3;
-	JButton dodge;
+	private Image arenaImage;
+	private Image boxer;
+	private Image opponent;
+	private Image bam;
 
-	CustomMouseListener mouseListener;
+
+	private JButton skill1;
+	private JButton skill2;
+	private JButton skill3;
+	private JButton dodge;
+	private JLabel fightLabel;
+
+	private CustomMouseListener mouseListener;
 	
-	int health;
-	int oppHealth;
-	JLabel healthLabel;
-	JLabel oppHealthLabel;
+	private int health;
+	private int oppHealth;
+	private JLabel healthLabel;
+	private JLabel oppHealthLabel;
 
-	int attackTime;
+	private int attackTime;
 
-	int oppStr;
-	int oppAgi;
-	int oppVit;
+	private int oppStr;
+	private int oppAgi;
+	private int oppVit;
+
+
+	private boolean boxerEffect, opponentEffect;
 
 	StreetMap( CustomMouseListener mouselistener){
+
+		boxerEffect = false;
+		opponentEffect = false;
+
 		setLayout(null);
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
 		URL mapURL = getClass().getClassLoader().getResource("arena.jpg");
@@ -44,6 +55,14 @@ public class StreetMap extends JPanel{
 		mapURL = getClass().getClassLoader().getResource("opponent.png");
 		mapIcon = new ImageIcon(mapURL);
 		opponent = mapIcon.getImage();
+		
+		mapURL = getClass().getClassLoader().getResource("bam.png");
+		mapIcon = new ImageIcon( mapURL);
+		bam = mapIcon.getImage();
+
+
+
+		fightLabel = new JLabel( "Your opponent is ready. What about you?");
 
 		health = 100;
 		String healthStr = "Health: " + health;
@@ -77,7 +96,10 @@ public class StreetMap extends JPanel{
 		skill2.setBounds( 150, 475, 100, 50);
 		skill3.setBounds( 250, 475, 100, 50);
 		dodge.setBounds( 350, 475, 100, 50);
-		
+		fightLabel.setBounds( 500, 475, 300, 50);
+		fightLabel.setBackground( new Color(119, 135, 119));
+		fightLabel.setOpaque(true);
+
 		skill1.addMouseListener(mouseListener);
 		skill2.addMouseListener(mouseListener);
 		skill3.addMouseListener(mouseListener);
@@ -87,8 +109,9 @@ public class StreetMap extends JPanel{
 		add(skill2);
 		add(skill3);
 		add(dodge);
+		add(fightLabel);
 	}
-	//@Override
+	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(Color.WHITE);
@@ -96,6 +119,11 @@ public class StreetMap extends JPanel{
 		g.drawImage(boxer, 75,150,200,350,null);
 		setOpaque(false);
 		g.drawImage(opponent, 575,150,200,350,null);
+		if( opponentEffect)
+			g.drawImage( bam, 550, 180, 100, 100, null);
+		else if( boxerEffect)
+			g.drawImage( bam, 180, 180, 100, 100, null);
+		
 		
 	}
 	public JButton getSkill1Button(){
@@ -148,6 +176,10 @@ public class StreetMap extends JPanel{
 		oppStr = (int)(str * 0.9);
 		oppAgi = (int)(agi * 1.2);
 		oppVit = (int)(vit * 1.5);
+		fightLabel.setText( "Your opponent is ready. What about you?");
+		opponentEffect = false;
+		boxerEffect = false;
+		repaint();
 	}
 	public boolean attack(){
 		attackTime = attackTime - 1;
@@ -157,16 +189,31 @@ public class StreetMap extends JPanel{
 		}
 		return true;
 	}
-	public void oppAttack(	int skill){
+	public int oppAttack(	int skill){
+		int attack;		
 		if( skill == 0 ){
-			int attack = oppStr * 1;
+			attack = oppStr * 1;
 			updateHealth( attack);
 		}else if( skill == 1){
-			int attack = oppStr * 2 + oppAgi * 1;
+			attack = oppStr * 2 + oppAgi * 1;
 			updateHealth(attack);
 		}else{
-			int attack = oppStr * 3 + oppAgi * 2;
+			attack = oppStr * 3 + oppAgi * 2;
 			updateHealth( attack);
 		}
+		return attack;
+	}
+	public void setFightLabel( String text){
+		fightLabel.setText( text);
+	}
+	public void boxerAttackEffect(){
+		boxerEffect = false;
+		opponentEffect = true;
+		repaint();
+	}
+	public void opponentAttackEffect(){
+		opponentEffect = false;
+		boxerEffect = true;
+		repaint();
 	}
 }

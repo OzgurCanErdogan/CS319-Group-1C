@@ -1,15 +1,15 @@
-import java.awt.*;  
-import javax.swing.*;  
+import java.awt.*;
+import javax.swing.*;
 import java.net.URL;
 import java.awt.event.*;
 import javax.swing.border.Border;
 import java.util.Random;
 
-public class GameManager extends JPanel{	
+public class GameManager extends JPanel{
 	// screen properties
 	public static final int height = 600;
 	public static final int width = 800;
-	
+
 	//character properties
 	private int health;
 	private int str;
@@ -17,21 +17,22 @@ public class GameManager extends JPanel{
 	private int vit;
 	private int exp;
 	private int time;
-	
+
 	private int winTime;
 	// random creater value
 	Random rand;
-		
+
 	// initialization of objects
-	CustomMouseListener mouseListener;	
+	CustomMouseListener mouseListener;
 	MapManager mapManager;
 	ObjectManager objectManager;
 
 	GameManager(){
 		winTime = 0;
-		// create object manager and boxer object		
+		// create object manager and boxer object
 		objectManager = new ObjectManager();
 		objectManager.createBoxer( "Butterfly");
+		objectManager.createSkillSet();
 
 		//assignment of character properties
 		health = objectManager.getBoxerHealth();
@@ -46,7 +47,7 @@ public class GameManager extends JPanel{
 		mouseListener = new CustomMouseListener( this);
 		mapManager = new MapManager(mouseListener);
 		mapManager.setPreferredSize(new Dimension(width,height));
-		
+
 		// method calls to set property labels of boxer
 		setHealth(health);
 		setStr(str);
@@ -54,7 +55,9 @@ public class GameManager extends JPanel{
 		setVit(vit);
 		setExp(exp);
 		setTime(time);
-		
+
+		mapManager.setStreetSkill1Button(objectManager.skills[0].getName());
+
 		// add mapManager object to panel
 		add(mapManager);
 	}
@@ -138,6 +141,9 @@ public class GameManager extends JPanel{
 	public JButton getGymDoIt3Button(){
 		return mapManager.getGymDoIt3Button();
 	}
+	public JButton getSkillBackButton(){
+		return mapManager.skill.getBackButton();
+	}
 	public JButton getHomeBackButton(){
 		return mapManager.getHomeBackButton();
 	}
@@ -185,12 +191,22 @@ public class GameManager extends JPanel{
 	}
 	// calculate the attack power and new health values and send this information to mapManager class
 	public void arenaAttackSkill1(){
-		int attack = str * 1;
+		int attack = objectManager.skills[0].getTotalDamage();
+		//int attack = str * 1;
 		mapManager.updateArenaOpponentHealth(attack);
 		if( mapManager.arenaAttack() == false){
-			mapManager.arenaOppAttack( rand.nextInt(3));
-			mapManager.arenaOppAttack( rand.nextInt(3));
-			mapManager.arenaOppAttack( rand.nextInt(3));
+			int totAttack = 0;
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			mapManager.arenaOpponentAttackEffect();
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			String text = "Your opponent gave you " + totAttack + " damage.";
+			mapManager.setArenaFightLabel( text);
+		}
+		else{
+			String text = "You gave " + attack + " damage to your opponent.";
+			mapManager.setArenaFightLabel(text);
+			mapManager.arenaBoxerAttackEffect();
 		}
 		if( mapManager.isArenaFinished()){
 			health = mapManager.getArenaHealth();
@@ -213,9 +229,18 @@ public class GameManager extends JPanel{
 		int attack = str * 2 + agi * 1;
 		mapManager.updateArenaOpponentHealth(attack);
 		if( mapManager.arenaAttack() == false){
-			mapManager.arenaOppAttack( rand.nextInt(3));
-			mapManager.arenaOppAttack( rand.nextInt(3));
-			mapManager.arenaOppAttack( rand.nextInt(3));
+			int totAttack = 0;
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			mapManager.arenaOpponentAttackEffect();
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			String text = "Your opponent gave you " + totAttack + " damage.";
+			mapManager.setArenaFightLabel( text);
+		}
+		else{
+			String text = "You gave " + attack + " damage to your opponent.";
+			mapManager.setArenaFightLabel(text);
+			mapManager.arenaBoxerAttackEffect();
 		}
 		if( mapManager.isArenaFinished()){
 			health = mapManager.getArenaHealth();
@@ -238,9 +263,18 @@ public class GameManager extends JPanel{
 		int attack = str * 3 + agi * 2;
 		mapManager.updateArenaOpponentHealth(attack);
 		if( mapManager.arenaAttack() == false){
-			mapManager.arenaOppAttack( rand.nextInt(3));
-			mapManager.arenaOppAttack( rand.nextInt(3));
-			mapManager.arenaOppAttack( rand.nextInt(3));
+			int totAttack = 0;
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			mapManager.arenaOpponentAttackEffect();
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			String text = "Your opponent gave you " + totAttack + " damage.";
+			mapManager.setArenaFightLabel( text);
+		}
+		else{
+			String text = "You gave " + attack + " damage to your opponent.";
+			mapManager.setArenaFightLabel(text);
+			mapManager.arenaBoxerAttackEffect();
 		}
 		if( mapManager.isArenaFinished()){
 			health = mapManager.getArenaHealth();
@@ -260,10 +294,14 @@ public class GameManager extends JPanel{
 		}
 	}
 	public void arenaDodge(){
-		
-		mapManager.arenaOppAttack( rand.nextInt(3));
-		mapManager.arenaOppAttack( rand.nextInt(3));
-		
+
+		int totAttack = 0;
+		totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+		mapManager.arenaOpponentAttackEffect();
+		totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+		String text = "Your opponent gave you " + totAttack + " damage.";
+		mapManager.setArenaFightLabel( text);
+
 		if( mapManager.isArenaFinished()){
 			health = mapManager.getArenaHealth();
 			setHealth( health);
@@ -281,9 +319,18 @@ public class GameManager extends JPanel{
 		attack = attack + objectManager.getItemEffect();
 		mapManager.updateStreetOpponentHealth(attack);
 		if( mapManager.streetAttack() == false){
-			mapManager.streetOppAttack( rand.nextInt(3));
-			mapManager.streetOppAttack( rand.nextInt(3));
-			mapManager.streetOppAttack( rand.nextInt(3));
+			int totAttack = 0;
+			totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+			mapManager.streetOpponentAttackEffect();
+			totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+			String text = "Your opponent gave you " + totAttack + " damage.";
+			mapManager.setStreetFightLabel( text);
+		}
+		else{
+			String text = "You gave " + attack + " damage to your opponent.";
+			mapManager.setStreetFightLabel(text);
+			mapManager.streetBoxerAttackEffect();
 		}
 		if( mapManager.isStreetFinished()){
 			health = mapManager.getStreetHealth();
@@ -302,9 +349,17 @@ public class GameManager extends JPanel{
 		attack = attack + objectManager.getItemEffect();
 		mapManager.updateStreetOpponentHealth(attack);
 		if( mapManager.streetAttack() == false){
-			mapManager.streetOppAttack( rand.nextInt(3));
-			mapManager.streetOppAttack( rand.nextInt(3));
-			mapManager.streetOppAttack( rand.nextInt(3));
+			int totAttack = 0;
+			totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+			mapManager.streetOpponentAttackEffect();
+			totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+			String text = "Your opponent gave you " + totAttack + " damage.";
+			mapManager.setStreetFightLabel( text);
+		}else{
+			String text = "You gave " + attack + " damage to your opponent.";
+			mapManager.setStreetFightLabel(text);
+			mapManager.streetBoxerAttackEffect();
 		}
 		if( mapManager.isStreetFinished()){
 			health = mapManager.getStreetHealth();
@@ -323,9 +378,17 @@ public class GameManager extends JPanel{
 		attack = attack + objectManager.getItemEffect();
 		mapManager.updateStreetOpponentHealth(attack);
 		if( mapManager.streetAttack() == false){
-			mapManager.streetOppAttack( rand.nextInt(3));
-			mapManager.streetOppAttack( rand.nextInt(3));
-			mapManager.streetOppAttack( rand.nextInt(3));
+			int totAttack = 0;
+			totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+			mapManager.streetOpponentAttackEffect();
+			totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+			String text = "Your opponent gave you " + totAttack + " damage.";
+			mapManager.setStreetFightLabel( text);
+		}else{
+			String text = "You gave " + attack + " damage to your opponent.";
+			mapManager.setStreetFightLabel(text);
+			mapManager.streetBoxerAttackEffect();
 		}
 		if( mapManager.isStreetFinished()){
 			health = mapManager.getStreetHealth();
@@ -340,17 +403,21 @@ public class GameManager extends JPanel{
 		}
 	}
 	public void streetDodge(){
-		
-		mapManager.streetOppAttack( rand.nextInt(3));
-		mapManager.streetOppAttack( rand.nextInt(3));
-		
+
+		int totAttack = 0;
+		totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+		mapManager.streetOpponentAttackEffect();
+		totAttack = totAttack + mapManager.streetOppAttack( rand.nextInt(3));
+		String text = "Your opponent gave you " + totAttack + " damage.";
+		mapManager.setStreetFightLabel( text);
+
 		if( mapManager.isStreetFinished()){
 			health = mapManager.getStreetHealth();
 			setHealth( health);
 			if( mapManager.isStreetWin())
 				setExp( exp + 200);
 			else
-				setExp(exp + 100);	
+				setExp(exp + 100);
 			changePlace("map");
 			setTime(time + 4);
 			updateClosedPlaces();
@@ -394,7 +461,7 @@ public class GameManager extends JPanel{
 	public boolean isOpen(){
 		if( time < 22 && time > 6)
 			return true;
-		else{ 
+		else{
 			return false;
 		}
 	}
@@ -403,5 +470,8 @@ public class GameManager extends JPanel{
 			mapManager.updateClosedPlaces();
 		else
 			mapManager.updateOpenPlaces();
+	}
+	public JButton getSkillButton(){
+		return mapManager.getSkillButton();
 	}
 }

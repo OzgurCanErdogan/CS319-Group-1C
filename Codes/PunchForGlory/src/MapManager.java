@@ -1,18 +1,18 @@
-import java.awt.*;  
-import javax.swing.*;  
+import java.awt.*;
+import javax.swing.*;
 import java.net.URL;
 import java.awt.event.*;
 import javax.swing.border.Border;
 import java.util.Random;
 
-public class MapManager extends JPanel{  
+public class MapManager extends JPanel{
 	public static final int height = 600;
 	public static final int width = 800;
 	private JFrame window;
 	private CardLayout cardLayout;
 	private JPanel mainPanel;
-	
-	
+
+
 	private JLabel strLabel;
 	private JLabel agiLabel;
 	private JLabel vitLabel;
@@ -29,6 +29,7 @@ public class MapManager extends JPanel{
 	StoreMap store;
 	CustomMouseListener mouseListener;
 	Random rand;
+	SkillMap skill;
 
 	public MapManager( CustomMouseListener mouselistener){
 
@@ -39,64 +40,64 @@ public class MapManager extends JPanel{
 		mouseListener = mouselistener;
 
 		rand = new Random();
-		
+
 		// boxer properties
 		JPanel properties = new JPanel();
 		FlowLayout flow = new FlowLayout(5);
 		properties.setLayout( flow);
 		properties.setPreferredSize(new Dimension( width, 50));
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 5);
-		
+
 		//print health value on the screen
 		healthLabel = new JLabel();
 		healthLabel.setPreferredSize( new Dimension( 120, 40));
-		healthLabel.setBorder(border);	
+		healthLabel.setBorder(border);
 
 		// print strength value on the screen
 		strLabel = new JLabel();
 		strLabel.setPreferredSize( new Dimension( 120, 40));
-		strLabel.setBorder(border);	
+		strLabel.setBorder(border);
 
 		// print agility value on the screen
 		agiLabel = new JLabel();
 		agiLabel.setPreferredSize( new Dimension( 120, 40));
-		agiLabel.setBorder(border);	
+		agiLabel.setBorder(border);
 
 		// print vitality value on the screen
 		vitLabel = new JLabel();
 		vitLabel.setPreferredSize( new Dimension( 120, 40));
-		vitLabel.setBorder(border);	
+		vitLabel.setBorder(border);
 
 		// print experience value on the screen
 		expLabel = new JLabel();
 		expLabel.setPreferredSize( new Dimension( 150, 40));
-		expLabel.setBorder(border);	
+		expLabel.setBorder(border);
 
 		// print time value on the screen
 		timeLabel = new JLabel();
 		timeLabel.setPreferredSize( new Dimension( 120, 40));
-		timeLabel.setBorder(border);	
-	
-	
+		timeLabel.setBorder(border);
+
+
 		// adding character property labels on properties panel
 		properties.add(healthLabel);
 		properties.add(strLabel);
 		properties.add(agiLabel);
 		properties.add(vitLabel);
 		properties.add(expLabel);
-		properties.add(timeLabel);		
+		properties.add(timeLabel);
 
 		// put properties panel on main panel
 		add(properties, BorderLayout.NORTH);
-		
+
 		// general map adding
-		map = new Map();
+		map = new Map( mouseListener);
 		//map.setPreferredSize( new Dimension(width, height - 100));
 		map.addMouseListener( mouseListener);
 		cardLayout = new CardLayout();
 		mainPanel.setLayout( cardLayout);
 		mainPanel.add("map",map);
-		
+
 		//adding home map
 		home = new HomeMap( mouseListener);
 		mainPanel.add("home",home);
@@ -108,7 +109,7 @@ public class MapManager extends JPanel{
 		//adding gym map
 		gym = new GymMap( mouseListener);
 		mainPanel.add("gym",gym);
-	
+
 		// adding arena map
 		arena = new ArenaMap( mouseListener);
 		mainPanel.add("arena",arena);
@@ -120,6 +121,10 @@ public class MapManager extends JPanel{
 		// adding store map
 		store = new StoreMap( mouseListener);
 		mainPanel.add("store", store);
+
+		// adding skill map
+		skill = new SkillMap(mouseListener);
+		mainPanel.add("skill", skill);
 
 	}
 
@@ -160,6 +165,9 @@ public class MapManager extends JPanel{
 	public void resetArena( int str, int agi, int vit){
 		arena.reset( str, agi, vit);
 	}
+	public void setStreetSkill1Button(String newSkill){
+		arena.setSkill1Name(newSkill);
+	}
 	public void setArenaHealth( int health){
 		arena.setHealth(health);
 	}
@@ -192,6 +200,9 @@ public class MapManager extends JPanel{
 	}
 	public JButton getGymDoIt3Button(){
 		return gym.getDoIt3Button();
+	}
+	public JButton getSkillBackButton(){
+		return skill.getBackButton();
 	}
 	public JButton getArenaSkill1Button(){
 		return arena.getSkill1Button();
@@ -232,8 +243,8 @@ public class MapManager extends JPanel{
 	public boolean arenaAttack(){
 		return arena.attack();
 	}
-	public void arenaOppAttack( int attack){
-		arena.oppAttack( attack);	
+	public int arenaOppAttack( int attack){
+		return arena.oppAttack( attack);
 	}
 	public boolean isArenaFinished(){
 		return arena.isFinished();
@@ -243,15 +254,15 @@ public class MapManager extends JPanel{
 	}
 	public boolean isArenaWin(){
 		return arena.isWin();
-	}	
+	}
 	public void updateStreetOpponentHealth(int attack){
 		street.updateOpponentHealth( attack);
 	}
 	public boolean streetAttack(){
 		return street.attack();
 	}
-	public void streetOppAttack( int attack){
-		street.oppAttack( attack);	
+	public int streetOppAttack( int attack){
+		return street.oppAttack( attack);
 	}
 	public boolean isStreetFinished(){
 		return street.isFinished();
@@ -286,4 +297,25 @@ public class MapManager extends JPanel{
 	public void updateOpenPlaces(){
 		map.updateOpenPlaces();
 	}
-}  
+	public JButton getSkillButton(){
+		return map.getSkillButton();
+	}
+	public void setArenaFightLabel( String text){
+		arena.setFightLabel( text);
+	}
+	public void setStreetFightLabel( String text){
+		street.setFightLabel(text);
+	}
+	public void arenaBoxerAttackEffect(){
+		arena.boxerAttackEffect();
+	}
+	public void arenaOpponentAttackEffect(){
+		arena.opponentAttackEffect();
+	}
+	public void streetBoxerAttackEffect(){
+		street.boxerAttackEffect();
+	}
+	public void streetOpponentAttackEffect(){
+		street.opponentAttackEffect();
+	}
+}
