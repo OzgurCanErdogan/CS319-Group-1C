@@ -102,7 +102,7 @@ public class ArenaMap extends JPanel{
 		add(dodge);
 	}
 	// draw images
-	@Override
+	//@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.setColor(new Color(54,111,135));

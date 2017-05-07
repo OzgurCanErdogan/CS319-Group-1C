@@ -48,7 +48,7 @@ public class ModeSettings extends JPanel implements ItemListener {
 
     }
 
-    @Override
+    //@Override
     public void itemStateChanged(ItemEvent e) {
         int index = 0;
         char c = '-';

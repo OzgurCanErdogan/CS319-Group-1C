@@ -60,7 +60,7 @@ public class GymMap extends JPanel{
 		add(doIt3);
 		add(back);
 	}
-	@Override
+	//@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setOpaque(false);

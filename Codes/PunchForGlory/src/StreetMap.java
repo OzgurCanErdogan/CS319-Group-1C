@@ -88,7 +88,7 @@ public class StreetMap extends JPanel{
 		add(skill3);
 		add(dodge);
 	}
-	@Override
+	//@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(Color.WHITE);

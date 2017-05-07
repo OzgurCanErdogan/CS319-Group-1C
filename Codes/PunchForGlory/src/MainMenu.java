@@ -54,7 +54,7 @@ public class MainMenu extends JPanel{
 		quit.addMouseListener( mouse);
 	}
 
-	@Override
+	//@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(Color.WHITE);

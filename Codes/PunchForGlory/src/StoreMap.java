@@ -1,5 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.JComboBox;
 import java.net.URL;
 import java.awt.event.*;
 import javax.swing.border.Border;
@@ -39,13 +40,30 @@ public class StoreMap extends JPanel{
 
 		Item knife = new Item("Knife");
 		Item stick = new Item("Stick");	
-		Item knuckle = new Item("Knuckle");
+		Item red_gloves = new Item("Red gloves");
+        Item blue_gloves = new Item("Blue gloves");
+        Item green_gloves = new Item("Green gloves");
+        Item glorious_gloves = new Item("Glorious gloves");
+        Item bandage_1 = new Item("Standard bandage");
+        Item bandage_2 = new Item("High Quality bandage");
+        Item headgear = new Item("Normal headgear");
+        Item helmet = new Item("Rocky's headgear");
+        Item knuckle = new Item("Knuckle");
+
 
 		itemList = new JComboBox<Item>();
 		itemList.addItem( knife);
 		itemList.addItem(stick);
 		itemList.addItem(knuckle);
-	
+        itemList.addItem(red_gloves);
+        itemList.addItem(blue_gloves);
+        itemList.addItem(green_gloves);
+        itemList.addItem(glorious_gloves);
+        itemList.addItem(bandage_1);
+        itemList.addItem(bandage_2);
+        itemList.addItem(headgear);
+        itemList.addItem(helmet);
+
 		itemList.setBounds( 100, 150, 400, 50);
 		
 		boxerItems = new JComboBox<Item>();

@@ -72,7 +72,7 @@ public class SettingsMenu extends JPanel implements ActionListener {
 	
 	}
 
-	@Override
+	//@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == red){
 			System.out.print(e.getActionCommand());

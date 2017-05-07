@@ -54,7 +54,7 @@ public class Map extends JPanel{
 		add(storeLabel);
 		
 	}
-	@Override
+	//@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		setBackground(Color.WHITE);
