@@ -3,37 +3,39 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.net.URL;
 
-public class ModeSettings extends JPanel implements ItemListener {
+public class ModeSettings extends JPanel {
     public static final int height = 600;
     public static final int width = 800;
     JLabel mousePoint;
     JFrame window;
-    CardLayout cardLayout;
 
-    JCheckBox godMode;
-    JCheckBox normalMode;
+    JRadioButton godMode;
+    JRadioButton normalMode;
     JButton back;
-    CustomMouseListener mouse;
-    JPanel mainPanel;
+    CustomMouseListener2 mouse;
+    ButtonGroup buttonGroup;
+    private int mode;
 
-    public ModeSettings( JPanel panel, CardLayout cl){
-        mainPanel = panel;
-        cardLayout = cl;
+    public ModeSettings( CustomMouseListener2 mouseListener){
+        mouse = mouseListener;
+
         //setLayout(null);
-        godMode = new JCheckBox("God Mode");
+        godMode = new JRadioButton("God Mode");
         godMode.setMnemonic(KeyEvent.VK_C);
-        godMode.setSelected(true);
+        godMode.setSelected(false);
 
-        normalMode = new JCheckBox("Normal Mode");
+        normalMode = new JRadioButton("Normal Mode");
         normalMode.setMnemonic(KeyEvent.VK_C);
         normalMode.setSelected(true);
 
         back = new JButton("Back");
         setBounds(500,200,150,50);
 
-        godMode.addItemListener(this);
-        normalMode.addItemListener(this);
-        back.addMouseListener( new CustomMouseListener());
+        buttonGroup = new ButtonGroup();
+
+        buttonGroup.add(normalMode);
+        buttonGroup.add(godMode);
+        back.addMouseListener( mouse);
 
         //JPanel checkPanel = new JPanel(new GridLayout(0, 1));
         //checkPanel.add(godMode);
@@ -47,29 +49,14 @@ public class ModeSettings extends JPanel implements ItemListener {
         //setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
 
     }
-
-    //@Override
-    public void itemStateChanged(ItemEvent e) {
-        int index = 0;
-        char c = '-';
-        Object source = e.getItemSelectable();
-
-        if (source == godMode) {
-            index = 0;
-            c = 'c';
-        }
+    public JButton getBackButton(){
+      return back;
     }
-    class CustomMouseListener implements MouseListener {
-        public void mouseClicked(MouseEvent e) {
-            if (e.getSource() == back) {
-                cardLayout.show(mainPanel,"main");
-            }
-
-        }
-        public void mouseEntered(MouseEvent e){}
-        public void mouseExited(MouseEvent e){}
-        public void mousePressed(MouseEvent e){}
-        public void mouseReleased(MouseEvent e){}
+    public int getMode(){
+      if( normalMode.isSelected())
+        return 0;
+      else
+        return 1;
     }
 
 }

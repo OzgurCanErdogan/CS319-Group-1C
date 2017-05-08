@@ -1,29 +1,25 @@
-import java.awt.*;  
-import javax.swing.*;  
+import java.awt.*;
+import javax.swing.*;
 import java.awt.event.*;
 import java.net.URL;
 
 public class MainMenu extends JPanel{
-	JPanel mainPanel;
-	CardLayout cardLayout;
 	JButton newGame;
 	JButton help;
 	JButton settings;
 	JButton modeSettings;
 	JButton credits;
-	JButton quit;	
-	CustomMouseListener mouse;
+	JButton quit;
+	CustomMouseListener2 mouse;
 	Image boxer;
-	public MainMenu( JPanel panel, CardLayout cl){
-		mainPanel = panel;
-		cardLayout = cl;
-		setLayout( null);
-		mouse = new CustomMouseListener();			
 
+	public MainMenu( CustomMouseListener2 mouseListener){
+		mouse = mouseListener;
+		setLayout( null);
 
 		URL boxerURL = getClass().getClassLoader().getResource("boxer.png");
 		ImageIcon boxerIcon = new ImageIcon(boxerURL);
-		boxer = boxerIcon.getImage(); 
+		boxer = boxerIcon.getImage();
 
 		newGame = new JButton("New Game");
 		help = new JButton("Help");
@@ -45,7 +41,7 @@ public class MainMenu extends JPanel{
 		add(modeSettings);
 		add(credits);
 		add(quit);
-	
+
 		newGame.addMouseListener( mouse);
 		help.addMouseListener( mouse);
 		settings.addMouseListener( mouse);
@@ -60,31 +56,22 @@ public class MainMenu extends JPanel{
 		setBackground(Color.WHITE);
 		g.drawImage(boxer, 325,0,150,200,null);
 	}
-	
-	class CustomMouseListener implements MouseListener{
-		public void mouseClicked(MouseEvent e){
-			if( e.getSource() == newGame){
-				cardLayout.show(mainPanel, "newGame");
-			}
-			else if( e.getSource() == help){
-			}
-			else if( e.getSource() == settings){
-
-				cardLayout.show(mainPanel, "settings");
-			}
-			else if( e.getSource() == modeSettings){
-				cardLayout.show(mainPanel, "modeSettings");
-			}
-			else if( e.getSource() == credits){
-			}
-			else if( e.getSource() == quit){
-				System.exit(0);
-			}
-		}
-		public void mouseEntered(MouseEvent e){}
-		public void mouseExited(MouseEvent e){}
-		public void mousePressed(MouseEvent e){}
-		public void mouseReleased(MouseEvent e){}
-	
+	public JButton getNewGameButton(){
+		return newGame;
+	}
+	public JButton getHelpButton(){
+		return help;
+	}
+	public JButton getSettingsButton(){
+		return settings;
+	}
+	public JButton getModeSettingsButton(){
+		return modeSettings;
+	}
+	public JButton getCreditsButton(){
+		return credits;
+	}
+	public JButton getQuitButton(){
+		return quit;
 	}
 }

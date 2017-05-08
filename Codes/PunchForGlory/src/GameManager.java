@@ -19,6 +19,9 @@ public class GameManager extends JPanel{
 	private int time;
 
 	private int winTime;
+	private int looseTime;
+	private int mode;
+	private int volume;
 	// random creater value
 	Random rand;
 
@@ -27,8 +30,11 @@ public class GameManager extends JPanel{
 	MapManager mapManager;
 	ObjectManager objectManager;
 
+	private Color color;
+
 	GameManager(){
 		winTime = 0;
+		looseTime = 0;
 		// create object manager and boxer object
 		objectManager = new ObjectManager();
 		objectManager.createBoxer( "Butterfly");
@@ -220,8 +226,15 @@ public class GameManager extends JPanel{
 				winTime = winTime + 1;
 				setExp( exp + 200);
 			}
-			else
+			else{
 				setExp(exp + 100);
+				looseTime = looseTime + 1;
+				if( mode == 0 && looseTime == 2)
+					gameOver();
+				else if( mode == 1){
+					gameOver();
+				}
+			}
 			changePlace("map");
 			setTime(time + 4);
 			updateClosedPlaces();
@@ -254,8 +267,15 @@ public class GameManager extends JPanel{
 				winTime = winTime + 1;
 				setExp( exp + 200);
 			}
-			else
+			else{
 				setExp(exp + 100);
+				looseTime = looseTime + 1;
+				if( mode == 0 && looseTime == 2)
+					gameOver();
+				else if( mode == 1){
+					gameOver();
+				}
+			}
 			changePlace("map");
 			setTime(time + 4);
 			updateClosedPlaces();
@@ -288,8 +308,15 @@ public class GameManager extends JPanel{
 				winTime = winTime + 1;
 				setExp( exp + 200);
 			}
-			else
+			else{
 				setExp(exp + 100);
+				looseTime = looseTime + 1;
+				if( mode == 0 && looseTime == 2)
+					gameOver();
+				else if( mode == 1){
+					gameOver();
+				}
+			}
 			changePlace("map");
 			setTime(time + 4);
 			updateClosedPlaces();
@@ -312,8 +339,15 @@ public class GameManager extends JPanel{
 			setHealth( health);
 			if( mapManager.isArenaWin())
 				setExp( exp + 200);
-			else
+			else{
 				setExp(exp + 100);
+				looseTime = looseTime + 1;
+				if( mode == 0 && looseTime == 2)
+					gameOver();
+				else if( mode == 1){
+					gameOver();
+				}
+			}
 			changePlace("map");
 			setTime(time + 4);
 			updateClosedPlaces();
@@ -483,5 +517,17 @@ public class GameManager extends JPanel{
 		Item[] itemlist;
 		itemlist = objectManager.getItemlist();
 		mapManager.setStoreItems(itemlist);
+	}
+	public void setMode( int m){
+		mode = m;
+	}
+	public void setVolume( int level){
+		volume = level;
+	}
+	public void setColor( Color col){
+		color = col;
+	}
+	public void gameOver(){
+		System.exit(0);
 	}
 }
