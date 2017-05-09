@@ -108,4 +108,5 @@ public class StoreMap extends JPanel{
 			itemList.addItem(itemlist[i]);
 		}
 	}
+
 }

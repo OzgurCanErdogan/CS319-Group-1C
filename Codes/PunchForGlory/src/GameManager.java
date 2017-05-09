@@ -29,6 +29,7 @@ public class GameManager extends JPanel{
 	CustomMouseListener mouseListener;
 	MapManager mapManager;
 	ObjectManager objectManager;
+	Skill[] skillSet = new Skill[3];
 
 	private Color color;
 
@@ -66,10 +67,17 @@ public class GameManager extends JPanel{
 
 		mapManager.setStreetSkill1Button(objectManager.skills[0].getName());
 		setStoreItems();
+		setStoreSkills();
 		// add mapManager object to panel
 		add(mapManager);
 	}
 	// set and get methods of properties. New values are sent to mapManager class
+	public void setSkillNames(){
+		mapManager.setStreetSkill1Button(skillSet[0].getName());
+		mapManager.setStreetSkill2Button(skillSet[1].getName());
+		mapManager.setStreetSkill3Button(skillSet[2].getName());
+
+	}
 	public void setHealth( int newHealth){
 		health = newHealth;
 		if( health > 100)
@@ -191,6 +199,9 @@ public class GameManager extends JPanel{
 	public JButton getBuyButton(){
 		return mapManager.getBuyButton();
 	}
+	public JButton getSetButton(){
+		return mapManager.getSetButton();
+	}
 	public JButton getStoreBackButton(){
 		return mapManager.getStoreBackButton();
 	}
@@ -202,7 +213,7 @@ public class GameManager extends JPanel{
 	}
 	// calculate the attack power and new health values and send this information to mapManager class
 	public void arenaAttackSkill1(){
-		int attack = objectManager.skills[0].getTotalDamage();
+		int attack = skillSet[0].getTotalDamage();
 		//int attack = str * 1;
 		mapManager.updateArenaOpponentHealth(attack);
 		if( mapManager.arenaAttack() == false){
@@ -244,7 +255,7 @@ public class GameManager extends JPanel{
 		}
 	}
 	public void arenaAttackSkill2(){
-		int attack = str * 2 + agi * 1;
+		int attack = skillSet[1].getTotalDamage();
 		mapManager.updateArenaOpponentHealth(attack);
 		if( mapManager.arenaAttack() == false){
 			int totAttack = 0;
@@ -285,7 +296,7 @@ public class GameManager extends JPanel{
 		}
 	}
 	public void arenaAttackSkill3(){
-		int attack = str * 3 + agi * 2;
+		int attack = skillSet[2].getTotalDamage();
 		mapManager.updateArenaOpponentHealth(attack);
 		if( mapManager.arenaAttack() == false){
 			int totAttack = 0;
@@ -484,6 +495,23 @@ public class GameManager extends JPanel{
 			}
 		}
 	}
+	public void setItem(){
+
+		Skill skill1 = mapManager.getSkill1();
+		Skill skill2 = mapManager.getSkill2();
+		Skill skill3 = mapManager.getSkill3();
+
+		if (skill1.getExp() <= exp)
+			skillSet[0] = skill1;
+		if (skill1.getExp() <= exp)
+			skillSet[1] = skill2;
+		if (skill1.getExp() <= exp)
+			skillSet[2] = skill3;
+
+		setSkillNames();
+
+
+	}
 	public void addBoxerItem( Item item){
 		mapManager.addBoxerItem( item);
 	}
@@ -517,6 +545,11 @@ public class GameManager extends JPanel{
 		Item[] itemlist;
 		itemlist = objectManager.getItemlist();
 		mapManager.setStoreItems(itemlist);
+	}
+	public void  setStoreSkills(){
+		Skill[] skillList;
+		skillList = objectManager.skills;
+		mapManager.setStoreSkills(skillList);
 	}
 	public void setMode( int m){
 		mode = m;

@@ -20,7 +20,9 @@ public class Skill {
         totalDamage = (int) ((str/2*factor)+ agi/3*factor)+baseDamage;
 
     }
-
+    public String toString(){
+        return name + ": Total Damage = " + totalDamage + ", Miss Rate = " + missRate + ", exp = " + exp;
+    }
 
 
     public void setBaseDamage(int baseDamage) {

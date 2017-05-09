@@ -168,6 +168,12 @@ public class MapManager extends JPanel{
 	public void setStreetSkill1Button(String newSkill){
 		arena.setSkill1Name(newSkill);
 	}
+	public void setStreetSkill2Button(String newSkill){
+		arena.setSkill2Name(newSkill);
+	}
+	public void setStreetSkill3Button(String newSkill){
+		arena.setSkill3Name(newSkill);
+	}
 	public void setArenaHealth( int health){
 		arena.setHealth(health);
 	}
@@ -234,6 +240,9 @@ public class MapManager extends JPanel{
 	public JButton getBuyButton(){
 		return store.getBuyButton();
 	}
+	public JButton getSetButton(){
+		return skill.getSetButton();
+	}
 	public JButton getRemoveButton(){
 		return store.getRemoveButton();
 	}
@@ -282,6 +291,15 @@ public class MapManager extends JPanel{
 	public Item getBuyItem(){
 		return store.getBuyItem();
 	}
+	public Skill getSkill1(){
+		return skill.getSkill1();
+	}
+	public Skill getSkill2(){
+		return skill.getSkill2();
+	}
+	public Skill getSkill3(){
+		return skill.getSkill3();
+	}
 	public Item getRemoveItem(){
 		return store.getRemoveItem();
 	}
@@ -320,5 +338,8 @@ public class MapManager extends JPanel{
 	}
 	public void setStoreItems( Item[] itemlist){
 		store.setStoreItems(itemlist);
+	}
+	public void setStoreSkills(Skill[] skillList){
+		skill.setSkillList(skillList);
 	}
 }

@@ -117,7 +117,10 @@ class CustomMouseListener implements MouseListener{
 				game.streetDodge();
 			}else if( e.getSource() == game.getBuyButton()){
 				game.buyItem();
-			}else if( e.getSource() == game.getRemoveButton()){
+			}else if(e.getSource() == game.getSetButton()){
+				game.setItem();
+			}
+			else if( e.getSource() == game.getRemoveButton()){
 				game.removeItem();
 			}else if( e.getSource() == game.getStoreBackButton()){
 				game.updateClosedPlaces();
