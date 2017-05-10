@@ -28,16 +28,16 @@ class CustomMouseListener implements MouseListener{
 
 			}else if( x < 330 && x> 280 && y < 310 && y > 260 ){
 				// arena
-				game.resetArena();
-				game.changePlace( "arena");
+				game.changePlace("skill");
+				game.setTarget("arena");
 			}else if( x < 580 && x > 530 && y < 305 && y > 245){
 				// gym
 				if( game.isOpen())
 					game.changePlace( "gym");
 			}else if( x < 660 && x > 605 && y < 110 && y > 55 ){
 				// street
-				game.resetStreet();
-				game.changePlace( "street");
+				game.changePlace("skill");
+				game.setTarget("street");
 			}else if( x < 800 && x > 750 && y < 305 && y > 245){
 				// store
 				if( game.isOpen()){
@@ -47,11 +47,6 @@ class CustomMouseListener implements MouseListener{
 				}
 			// used methods when mouse is clicked on a button
 			// gym buttons
-		}else if (e.getSource() == game.getSkillButton()){
-				System.out.print("test");
-				game.changePlace("skill");
-
-
 			} else if(e.getSource() == game.getSkillBackButton()){
 				game.changePlace("map");
 
@@ -125,6 +120,15 @@ class CustomMouseListener implements MouseListener{
 			}else if( e.getSource() == game.getStoreBackButton()){
 				game.updateClosedPlaces();
 				game.changePlace("map");
+			}else if( e.getSource() == game.getSkillPageContinueButton()){
+				String target = game.getTarget();
+				if( target.equals("arena")){
+					game.resetArena();
+					game.changePlace("arena");
+				}else if( target.equals("street")){
+					game.resetStreet();
+					game.changePlace( "street");
+				}
 			}
 		}
 		public void mouseEntered(MouseEvent e){}

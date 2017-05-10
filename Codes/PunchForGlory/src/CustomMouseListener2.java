@@ -22,18 +22,22 @@ class CustomMouseListener2 implements MouseListener{
     }else if( e.getSource() == menu.getMenuNewGameButton()){
       menu.changePlace("newGame");
     }
-    else if( e.getSource() == menu.getMenuHelpButton()){
-    }
     else if( e.getSource() == menu.getMenuSettingsButton()){
       menu.changePlace("settings");
     }
     else if( e.getSource() == menu.getMenuModeSettingsButton()){
       menu.changePlace("modeSettings");
-    }
-    else if( e.getSource() == menu.getMenuCreditsButton()){
+    }else if( e.getSource() == menu.getMenuCreditsButton()){
+      menu.changePlace("credits");
+    }else if( e.getSource() == menu.getMenuHelpButton()){
+      menu.changePlace("help");
     }
     else if( e.getSource() == menu.getMenuQuitButton()){
       System.exit(0);
+    }else if( e.getSource() == menu.getCreditsBackButton()){
+      menu.changePlace("main");
+    }else if( e.getSource() == menu.getHelpBackButton()){
+      menu.changePlace("main");
     }
   }
   public void mouseEntered(MouseEvent e){}

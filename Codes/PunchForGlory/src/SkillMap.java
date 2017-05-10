@@ -12,6 +12,7 @@ public class SkillMap extends JPanel{
     JComboBox<Skill> skillList2;
     JComboBox<Skill> skillList3;
     JLabel first,second, third;
+    private JButton cont;
 
     CustomMouseListener mouseListener;
 
@@ -25,17 +26,18 @@ public class SkillMap extends JPanel{
 
         back = new JButton("Back");
         set = new JButton( "Set All");
+        cont = new JButton("Continue");
 
         back.addMouseListener( mouseListener);
         set.addMouseListener( mouseListener);
-
+        cont.addMouseListener( mouseListener);
 
         first.setBounds( 75, 20, 300, 50);
         second.setBounds( 75, 105, 300, 50);
         third.setBounds( 75, 185, 300, 50);
         back.setBounds( 75, 360, 100, 50);
         set.setBounds( 75, 290 , 100, 50);
-
+        cont.setBounds( 200, 360, 100, 50);
 
         skillList1 = new JComboBox<Skill>();
         skillList1.setBounds( 75, 65, 400, 50);
@@ -54,12 +56,16 @@ public class SkillMap extends JPanel{
         add( skillList3);
         add(back);
         add( set);
+        add(cont);
     }
     public JButton getSetButton(){
         return set;
     }
     public JButton getBackButton(){
         return back;
+    }
+    public JButton getContinueButton(){
+      return cont;
     }
     public Skill getSkill1(){
         return (Skill) skillList1.getSelectedItem();
@@ -81,4 +87,3 @@ public class SkillMap extends JPanel{
         }
     }
 }
-

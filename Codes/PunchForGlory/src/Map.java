@@ -10,7 +10,6 @@ public class Map extends JPanel{
 	JLabel streetLabel;
 	JLabel storeLabel;
 
-	JButton skillButton;
 	CustomMouseListener mouseListener;
 
 	public Map( CustomMouseListener ml){
@@ -26,7 +25,6 @@ public class Map extends JPanel{
 		arenaLabel = new JLabel("Arena");
 		streetLabel = new JLabel("Street Arena");
 		storeLabel = new JLabel("Store <open>");
-		skillButton = new JButton("Skill Set");
 
 		Color color = new Color(119, 135, 119);
 
@@ -36,7 +34,6 @@ public class Map extends JPanel{
 		arenaLabel.setBackground(color);
 		streetLabel.setBackground(color);
 		storeLabel.setBackground(color);
-		skillButton.setBackground(color);
 
 		homeLabel.setOpaque(true);
 		workLabel.setOpaque(true);
@@ -51,10 +48,7 @@ public class Map extends JPanel{
 		arenaLabel.setBounds( 280, 230, 50, 30);
 		streetLabel.setBounds( 595, 20, 100, 30);
 		storeLabel.setBounds( 690, 210, 110, 30);
-		skillButton.setBounds(25,25,100,25);
 
-
-		skillButton.addMouseListener( mouseListener);
 
 		add(homeLabel);
 		add(workLabel);
@@ -62,7 +56,6 @@ public class Map extends JPanel{
 		add(arenaLabel);
 		add(streetLabel);
 		add(storeLabel);
-		add(skillButton);
 
 	}
 	//@Override
@@ -81,8 +74,5 @@ public class Map extends JPanel{
 		workLabel.setText("Work <open>");
 		gymLabel.setText("Gym <open>");
 		storeLabel.setText("Store <open>");
-	}
-	public JButton getSkillButton(){
-		return skillButton;
 	}
 }

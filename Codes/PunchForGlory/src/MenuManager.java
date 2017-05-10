@@ -12,7 +12,8 @@ public class MenuManager extends JFrame{
 	private GameManager gameManager;
 	private SettingsMenu settings;
 	private CustomMouseListener2 mouseListener;
-
+	private CreditMenu credits;
+	private HelpMenu help;
 
 	public MenuManager(){
 		cardLayout = new CardLayout();
@@ -46,6 +47,15 @@ public class MenuManager extends JFrame{
 		modeSettings.setSize( new Dimension( width, height));
 		mainPanel.add("modeSettings", modeSettings);
 
+		//Credits panel
+		credits = new CreditMenu( mouseListener);
+		credits.setSize( new Dimension( width, height));
+		mainPanel.add("credits", credits);
+
+		//Help panel
+		help = new HelpMenu( mouseListener);
+		help.setSize( new Dimension( width, height));
+		mainPanel.add("help", help);
 	}
 	public void changePlace(String place){
 		cardLayout.show(mainPanel, place);
@@ -88,6 +98,12 @@ public class MenuManager extends JFrame{
 	}
 	public JButton getMenuQuitButton(){
 		return mainMenu.getQuitButton();
+	}
+	public JButton getCreditsBackButton(){
+		return credits.getBackButton();
+	}
+	public JButton getHelpBackButton(){
+		return help.getBackButton();
 	}
 	// Main Method
 	public static void main(String args[]){

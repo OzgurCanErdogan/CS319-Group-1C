@@ -22,6 +22,7 @@ public class GameManager extends JPanel{
 	private int looseTime;
 	private int mode;
 	private int volume;
+	private String target;
 	// random creater value
 	Random rand;
 
@@ -208,8 +209,8 @@ public class GameManager extends JPanel{
 	public JButton getRemoveButton(){
 		return mapManager.getRemoveButton();
 	}
-	public JButton getSkillButton(){
-		return mapManager.getSkillButton();
+	public JButton getSkillPageContinueButton(){
+		return mapManager.getSkillPageContinueButton();
 	}
 	// calculate the attack power and new health values and send this information to mapManager class
 	public void arenaAttackSkill1(){
@@ -562,5 +563,11 @@ public class GameManager extends JPanel{
 	}
 	public void gameOver(){
 		System.exit(0);
+	}
+	public void setTarget( String str){
+		target = str;
+	}
+	public String getTarget(){
+		return target;
 	}
 }

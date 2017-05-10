@@ -246,6 +246,9 @@ public class MapManager extends JPanel{
 	public JButton getRemoveButton(){
 		return store.getRemoveButton();
 	}
+	public JButton getSkillPageContinueButton(){
+		return skill.getContinueButton();
+	}
 	public void updateArenaOpponentHealth(int attack){
 		arena.updateOpponentHealth( attack);
 	}
@@ -314,9 +317,6 @@ public class MapManager extends JPanel{
 	}
 	public void updateOpenPlaces(){
 		map.updateOpenPlaces();
-	}
-	public JButton getSkillButton(){
-		return map.getSkillButton();
 	}
 	public void setArenaFightLabel( String text){
 		arena.setFightLabel( text);
