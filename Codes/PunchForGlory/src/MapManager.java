@@ -194,6 +194,17 @@ public class MapManager extends JPanel{
 	public void setStreetSkill3Button(String newSkill){
 		arena.setSkill3Name(newSkill);
 	}
+
+	public void setSkill1Button(String newSkill){
+		street.setSkill1Name(newSkill);
+	}
+	public void setSkill2Button(String newSkill){
+		street.setSkill2Name(newSkill);
+	}
+	public void setSkill3Button(String newSkill){
+		street.setSkill3Name(newSkill);
+	}
+
 	public void setArenaHealth( int health){
 		arena.setHealth(health);
 	}

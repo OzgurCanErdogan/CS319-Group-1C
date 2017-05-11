@@ -80,6 +80,10 @@ public class GameManager extends JPanel{
 		mapManager.setStreetSkill2Button(skillSet[1].getName());
 		mapManager.setStreetSkill3Button(skillSet[2].getName());
 
+		mapManager.setSkill1Button(skillSet[0].getName());
+		mapManager.setSkill2Button(skillSet[1].getName());
+		mapManager.setSkill3Button(skillSet[2].getName());
+
 	}
 	public void setHealth( int newHealth){
 		health = newHealth;
@@ -413,8 +417,8 @@ public class GameManager extends JPanel{
 		}
 	}
 	public void streetAttackSkill1(){
-		int attack = str * 1;
-		attack = attack + objectManager.getItemEffect();
+		int attack = skillSet[0].getTotalDamage();
+		attack = attack + objectManager.getItemEffect()/3;
 		mapManager.updateStreetOpponentHealth(attack);
 		if( mapManager.streetAttack() == false){
 			int totAttack = 0;
@@ -443,7 +447,7 @@ public class GameManager extends JPanel{
 		}
 	}
 	public void streetAttackSkill2(){
-		int attack = str * 2 + agi * 1;
+		int attack = skillSet[1].getTotalDamage();
 		attack = attack + objectManager.getItemEffect();
 		mapManager.updateStreetOpponentHealth(attack);
 		if( mapManager.streetAttack() == false){
@@ -472,7 +476,7 @@ public class GameManager extends JPanel{
 		}
 	}
 	public void streetAttackSkill3(){
-		int attack = str * 3 + agi * 2;
+		int attack = skillSet[2].getTotalDamage();
 		attack = attack + objectManager.getItemEffect();
 		mapManager.updateStreetOpponentHealth(attack);
 		if( mapManager.streetAttack() == false){

@@ -126,6 +126,16 @@ public class StreetMap extends JPanel{
 		
 		
 	}
+	public void setSkill1Name(String newSkill) {
+		skill1.setText(newSkill);
+	}
+	public void setSkill2Name(String newSkill) {
+		skill2.setText(newSkill);
+	}
+	public void setSkill3Name(String newSkill) {
+		skill3.setText(newSkill);
+	}
+
 	public JButton getSkill1Button(){
 		return skill1;
 	}

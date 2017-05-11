@@ -40,13 +40,13 @@ public class ObjectManager{
 
 		Skill jab = new Skill("Jab", getBoxerStrength(),getBoxerAgility(),getBoxerVitality(),0.3,15,20,0);
 		skills[0] = jab;
-		Skill straight = new Skill("The Straight", getBoxerStrength(),getBoxerAgility(),getBoxerVitality(), 0.4, 20, 20, 0 );
+		Skill straight = new Skill("Straight", getBoxerStrength(),getBoxerAgility(),getBoxerVitality(), 0.4, 20, 20, 0 );
 		skills[1] = straight;
-		Skill bolo = new Skill("The Bolo",getBoxerStrength(),getBoxerAgility(),getBoxerVitality(), 0.3, 15,10,0);
+		Skill bolo = new Skill("Bolo",getBoxerStrength(),getBoxerAgility(),getBoxerVitality(), 0.3, 15,10,0);
 		skills[2] = bolo;
 		Skill uppercut = new Skill("Uppercut", getBoxerStrength(),getBoxerAgility(),getBoxerVitality(), 1.0, 35, 60, 1050);
 		skills[3] = uppercut;
-		Skill haymaker = new Skill("The Haymaker", getBoxerStrength(),getBoxerAgility(),getBoxerVitality(),0.6 , 25, 35, 450);
+		Skill haymaker = new Skill("Haymaker", getBoxerStrength(),getBoxerAgility(),getBoxerVitality(),0.6 , 25, 35, 450);
 		skills[4] = haymaker;
 		Skill elbow = new Skill("Elbow Strike", getBoxerStrength(),getBoxerAgility(),getBoxerVitality(), 0.4, 20, 25, 450 );
 		skills[5] = elbow;
