@@ -18,6 +18,7 @@ public class GameManager extends JPanel{
 	private int exp;
 	private int time;
 
+	private boolean bossTime;
 	private int winTime;
 	private int looseTime;
 	private int mode;
@@ -37,6 +38,7 @@ public class GameManager extends JPanel{
 	GameManager(){
 		winTime = 0;
 		looseTime = 0;
+		bossTime = false;
 		// create object manager and boxer object
 		objectManager = new ObjectManager();
 		objectManager.createBoxer( "Butterfly");
@@ -212,6 +214,15 @@ public class GameManager extends JPanel{
 	public JButton getSkillPageContinueButton(){
 		return mapManager.getSkillPageContinueButton();
 	}
+	public JButton getIntroContButton(){
+		return mapManager.getIntroContButton();
+	}
+	public JButton getBossFightRunButton(){
+		return mapManager.getBossFightRunButton();
+	}
+	public JButton getBossFightFightButton(){
+		return mapManager.getBossFightFightButton();
+	}
 	// calculate the attack power and new health values and send this information to mapManager class
 	public void arenaAttackSkill1(){
 		int attack = skillSet[0].getTotalDamage();
@@ -235,10 +246,16 @@ public class GameManager extends JPanel{
 			health = mapManager.getArenaHealth();
 			setHealth( health);
 			if( mapManager.isArenaWin()){
+				if(bossTime == true){
+					changePlace("winPanel");
+				}
 				winTime = winTime + 1;
 				setExp( exp + 200);
 			}
 			else{
+				if( bossTime == true){
+					changePlace("losePanel");
+				}
 				setExp(exp + 100);
 				looseTime = looseTime + 1;
 				if( mode == 0 && looseTime == 2)
@@ -247,12 +264,18 @@ public class GameManager extends JPanel{
 					gameOver();
 				}
 			}
-			changePlace("map");
-			setTime(time + 4);
-			updateClosedPlaces();
+			if( bossTime == false){
+				changePlace("map");
+				setTime(time + 4);
+				updateClosedPlaces();
+			}
 		}
-		if( winTime == 3){
-			System.exit(0);
+		if( winTime == 1){
+			setHealth(100);
+			resetArena();
+			winTime = 0;
+			bossTime = true;
+			changePlace("bossFight");
 		}
 	}
 	public void arenaAttackSkill2(){
@@ -272,14 +295,20 @@ public class GameManager extends JPanel{
 			mapManager.setArenaFightLabel(text);
 			mapManager.arenaBoxerAttackEffect();
 		}
-		if( mapManager.isArenaFinished()){
+		if( mapManager.isArenaFinished( )){
 			health = mapManager.getArenaHealth();
 			setHealth( health);
 			if( mapManager.isArenaWin()){
+				if( bossTime == true){
+					changePlace("winPanel");
+				}
 				winTime = winTime + 1;
 				setExp( exp + 200);
 			}
 			else{
+				if( bossTime == true){
+					changePlace("losePanel");
+				}
 				setExp(exp + 100);
 				looseTime = looseTime + 1;
 				if( mode == 0 && looseTime == 2)
@@ -288,12 +317,18 @@ public class GameManager extends JPanel{
 					gameOver();
 				}
 			}
-			changePlace("map");
-			setTime(time + 4);
-			updateClosedPlaces();
+			if( bossTime == false){
+				changePlace("map");
+				setTime(time + 4);
+				updateClosedPlaces();
+			}
 		}
 		if( winTime == 3){
-			System.exit(0);
+			setHealth(100);
+			resetArena();
+			winTime = 0;
+			bossTime = true;
+			changePlace("bossFight");
 		}
 	}
 	public void arenaAttackSkill3(){
@@ -317,10 +352,16 @@ public class GameManager extends JPanel{
 			health = mapManager.getArenaHealth();
 			setHealth( health);
 			if( mapManager.isArenaWin()){
+				if( bossTime == true){
+					changePlace("winPanel");
+				}
 				winTime = winTime + 1;
 				setExp( exp + 200);
 			}
 			else{
+				if( bossTime == true){
+					changePlace("losePanel");
+				}
 				setExp(exp + 100);
 				looseTime = looseTime + 1;
 				if( mode == 0 && looseTime == 2)
@@ -329,12 +370,18 @@ public class GameManager extends JPanel{
 					gameOver();
 				}
 			}
-			changePlace("map");
-			setTime(time + 4);
-			updateClosedPlaces();
+			if(bossTime == false){
+				changePlace("map");
+				setTime(time + 4);
+				updateClosedPlaces();
+			}
 		}
 		if( winTime == 3){
-			System.exit(0);
+			setHealth(100);
+			resetArena();
+			winTime = 0;
+			bossTime = true;
+			changePlace("bossFight");
 		}
 	}
 	public void arenaDodge(){

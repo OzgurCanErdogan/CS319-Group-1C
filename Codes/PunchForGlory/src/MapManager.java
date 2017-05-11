@@ -20,6 +20,7 @@ public class MapManager extends JPanel{
 	private JLabel timeLabel;
 	private JLabel healthLabel;
 
+	IntroPanel intro;
 	Map map;
 	GymMap gym;
 	HomeMap home;
@@ -30,6 +31,9 @@ public class MapManager extends JPanel{
 	CustomMouseListener mouseListener;
 	Random rand;
 	SkillMap skill;
+	BossFight bossFight;
+	WinPanel winPanel;
+	LosePanel losePanel;
 
 	public MapManager( CustomMouseListener mouselistener){
 
@@ -90,12 +94,18 @@ public class MapManager extends JPanel{
 		// put properties panel on main panel
 		add(properties, BorderLayout.NORTH);
 
+		// MainPanel layout creation
+		cardLayout = new CardLayout();
+		mainPanel.setLayout( cardLayout);
+
+		// Game IntroPanel
+		intro = new IntroPanel( mouseListener);
+		mainPanel.add("intro", intro);
+
 		// general map adding
 		map = new Map( mouseListener);
 		//map.setPreferredSize( new Dimension(width, height - 100));
 		map.addMouseListener( mouseListener);
-		cardLayout = new CardLayout();
-		mainPanel.setLayout( cardLayout);
 		mainPanel.add("map",map);
 
 		//adding home map
@@ -122,9 +132,19 @@ public class MapManager extends JPanel{
 		store = new StoreMap( mouseListener);
 		mainPanel.add("store", store);
 
+		bossFight = new BossFight(mouseListener);
+		bossFight.setPreferredSize(new Dimension(width,height));
+		mainPanel.add("bossFight", bossFight);
+
 		// adding skill map
 		skill = new SkillMap(mouseListener);
 		mainPanel.add("skill", skill);
+
+		winPanel = new WinPanel(mouseListener);
+		mainPanel.add("winPanel", winPanel);
+
+		losePanel = new LosePanel(mouseListener);
+		mainPanel.add("losePanel", losePanel);
 
 	}
 
@@ -249,6 +269,15 @@ public class MapManager extends JPanel{
 	public JButton getSkillPageContinueButton(){
 		return skill.getContinueButton();
 	}
+	public JButton getIntroContButton(){
+		return intro.getContButton();
+	}
+	public JButton getBossFightRunButton(){
+		return bossFight.getRunButton();
+	}
+	public JButton getBossFightFightButton(){
+		return bossFight.getFightButton();
+	}
 	public void updateArenaOpponentHealth(int attack){
 		arena.updateOpponentHealth( attack);
 	}
@@ -258,8 +287,8 @@ public class MapManager extends JPanel{
 	public int arenaOppAttack( int attack){
 		return arena.oppAttack( attack);
 	}
-	public boolean isArenaFinished(){
-		return arena.isFinished();
+	public boolean isArenaFinished( ){
+		return arena.isFinished( );
 	}
 	public int getArenaHealth(){
 		return arena.getHealth();

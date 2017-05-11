@@ -129,6 +129,12 @@ class CustomMouseListener implements MouseListener{
 					game.resetStreet();
 					game.changePlace( "street");
 				}
+			}else if( e.getSource() == game.getIntroContButton()){
+				game.changePlace("map");
+			}else if( e.getSource() == game.getBossFightRunButton()){
+				game.changePlace("map");
+			}else if( e.getSource() == game.getBossFightFightButton()){
+				game.changePlace("arena");
 			}
 		}
 		public void mouseEntered(MouseEvent e){}
