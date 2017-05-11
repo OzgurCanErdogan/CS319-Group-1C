@@ -38,6 +38,7 @@ public class ArenaMap extends JPanel{
 	private int attackTime;
 
 	private boolean boxerEffect, opponentEffect;
+	Skill[] skillSet = new Skill[3];
 
 	ArenaMap( CustomMouseListener mouselistener){
 
@@ -139,6 +140,12 @@ public class ArenaMap extends JPanel{
 
 	}
 
+	public void setSkillSet(Skill[] skill){
+		skillSet[0] = skill[0];
+		skillSet[1] = skill[1];
+		skillSet[2] = skill[2];
+	}
+
 	public void setSkill1Name(String newSkill) {
 		skill1.setText(newSkill);
 	}
@@ -222,16 +229,19 @@ public class ArenaMap extends JPanel{
 		return true;
 	}
 	// decrease boxer's health according to which attack opponent used
-	public int oppAttack(	int skill){
+	public int oppAttack(	int skill, Skill[] skillArr){
 		int attack;
 		if( skill == 0 ){
-			attack = oppStr * 1;
+			//attack = oppStr * 1;
+			attack = skillArr[0].getTotalDamage()-3;
 			updateHealth( attack);
 		}else if( skill == 1){
-			attack = oppStr * 2 + oppAgi * 1;
+			//attack = oppStr * 2 + oppAgi * 1;
+			attack = skillArr[1].getTotalDamage()-3;
 			updateHealth(attack);
 		}else{
-			attack = oppStr * 3 + oppAgi * 2;
+			//attack = oppStr * 3 + oppAgi * 2;
+			attack = skillArr[2].getTotalDamage()+5;
 			updateHealth( attack);
 		}
 		return attack;

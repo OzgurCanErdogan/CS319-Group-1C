@@ -71,6 +71,8 @@ public class GameManager extends JPanel{
 		mapManager.setStreetSkill1Button(objectManager.skills[0].getName());
 		setStoreItems();
 		setStoreSkills();
+		//mapManager.setSkillSetOpponent(skillSet);
+		mapManager.arenaSkillSet(skillSet);
 		// add mapManager object to panel
 		add(mapManager);
 	}
@@ -234,10 +236,10 @@ public class GameManager extends JPanel{
 		mapManager.updateArenaOpponentHealth(attack);
 		if( mapManager.arenaAttack() == false){
 			int totAttack = 0;
-			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
 			mapManager.arenaOpponentAttackEffect();
-			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
-			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
 			String text = "Your opponent gave you " + totAttack + " damage.";
 			mapManager.setArenaFightLabel( text);
 		}
@@ -274,7 +276,7 @@ public class GameManager extends JPanel{
 				updateClosedPlaces();
 			}
 		}
-		if( winTime == 1){
+		if( winTime == 3){
 			setHealth(100);
 			resetArena();
 			winTime = 0;
@@ -287,10 +289,10 @@ public class GameManager extends JPanel{
 		mapManager.updateArenaOpponentHealth(attack);
 		if( mapManager.arenaAttack() == false){
 			int totAttack = 0;
-			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
 			mapManager.arenaOpponentAttackEffect();
-			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
-			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
 			String text = "Your opponent gave you " + totAttack + " damage.";
 			mapManager.setArenaFightLabel( text);
 		}
@@ -340,10 +342,10 @@ public class GameManager extends JPanel{
 		mapManager.updateArenaOpponentHealth(attack);
 		if( mapManager.arenaAttack() == false){
 			int totAttack = 0;
-			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
 			mapManager.arenaOpponentAttackEffect();
-			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
-			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
+			totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
 			String text = "Your opponent gave you " + totAttack + " damage.";
 			mapManager.setArenaFightLabel( text);
 		}
@@ -391,9 +393,9 @@ public class GameManager extends JPanel{
 	public void arenaDodge(){
 
 		int totAttack = 0;
-		totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+		totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
 		mapManager.arenaOpponentAttackEffect();
-		totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3));
+		totAttack = totAttack + mapManager.arenaOppAttack( rand.nextInt(3),skillSet);
 		String text = "Your opponent gave you " + totAttack + " damage.";
 		mapManager.setArenaFightLabel( text);
 
@@ -555,10 +557,16 @@ public class GameManager extends JPanel{
 
 		if (skill1.getExp() <= exp)
 			skillSet[0] = skill1;
+		else
+			skillSet[0]=objectManager.skills[0];
 		if (skill1.getExp() <= exp)
 			skillSet[1] = skill2;
+		else
+			skillSet[1] = objectManager.skills[0];
 		if (skill1.getExp() <= exp)
 			skillSet[2] = skill3;
+		else
+			skillSet[3]= objectManager.skills[0];
 
 		setSkillNames();
 

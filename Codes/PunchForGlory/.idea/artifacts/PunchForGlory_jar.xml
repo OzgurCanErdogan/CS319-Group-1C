@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PunchForGlory:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/PunchForGlory_jar</output-path>
+    <root id="archive" name="PunchForGlory.jar">
+      <element id="module-output" name="PunchForGlory" />
+    </root>
+  </artifact>
+</component>

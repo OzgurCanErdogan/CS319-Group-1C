@@ -35,6 +35,7 @@ public class MapManager extends JPanel{
 	WinPanel winPanel;
 	LosePanel losePanel;
 
+	Skill[] skillSetOpponent = new Skill[3];
 	public MapManager( CustomMouseListener mouselistener){
 
 		setLayout( new BorderLayout());
@@ -147,7 +148,11 @@ public class MapManager extends JPanel{
 		mainPanel.add("losePanel", losePanel);
 
 	}
-
+	public void setSkillSetOpponent(Skill[] skill){
+		skillSetOpponent[0] = skill[0];
+		skillSetOpponent[1] = skill[1];
+		skillSetOpponent[2] = skill[2];
+	}
 
 	public void updateHealth( int health){
 		String healthText = "Health: " + health;
@@ -295,9 +300,15 @@ public class MapManager extends JPanel{
 	public boolean arenaAttack(){
 		return arena.attack();
 	}
-	public int arenaOppAttack( int attack){
-		return arena.oppAttack( attack);
+	public int arenaOppAttack( int attack,Skill[] skills){
+		return arena.oppAttack( attack,skills);
 	}
+
+	public void arenaSkillSet(Skill[] skill){
+		arena.setSkillSet(skill);
+		//arena.oppAttack(int attack);
+	}
+
 	public boolean isArenaFinished( ){
 		return arena.isFinished( );
 	}
