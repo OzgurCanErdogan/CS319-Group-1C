@@ -31,7 +31,7 @@
       <file leaf-file-name="StreetMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StreetMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="2125">
               <caret line="132" column="14" lean-forward="false" selection-start-line="132" selection-start-column="14" selection-end-line="132" selection-end-column="14" />
               <folding>
                 <element signature="e#3354#3355#0" expanded="true" />
@@ -57,8 +57,8 @@
       <file leaf-file-name="ArenaMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ArenaMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="243" column="51" lean-forward="true" selection-start-line="243" selection-start-column="51" selection-end-line="243" selection-end-column="51" />
+            <state relative-caret-position="3740">
+              <caret line="243" column="51" lean-forward="false" selection-start-line="243" selection-start-column="51" selection-end-line="243" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -68,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/src/GameManager.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="278" column="24" lean-forward="true" selection-start-line="278" selection-start-column="24" selection-end-line="278" selection-end-column="24" />
+              <caret line="278" column="24" lean-forward="false" selection-start-line="278" selection-start-column="24" selection-end-line="278" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -147,8 +147,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -177,7 +178,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -918,15 +918,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ArenaMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="243" column="51" lean-forward="true" selection-start-line="243" selection-start-column="51" selection-end-line="243" selection-end-column="51" />
+        <state relative-caret-position="3740">
+          <caret line="243" column="51" lean-forward="false" selection-start-line="243" selection-start-column="51" selection-end-line="243" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StreetMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="2125">
           <caret line="132" column="14" lean-forward="false" selection-start-line="132" selection-start-column="14" selection-end-line="132" selection-end-column="14" />
           <folding>
             <element signature="e#3354#3355#0" expanded="true" />
@@ -938,7 +938,7 @@
     <entry file="file://$PROJECT_DIR$/src/GameManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="278" column="24" lean-forward="true" selection-start-line="278" selection-start-column="24" selection-end-line="278" selection-end-column="24" />
+          <caret line="278" column="24" lean-forward="false" selection-start-line="278" selection-start-column="24" selection-end-line="278" selection-end-column="24" />
           <folding />
         </state>
       </provider>

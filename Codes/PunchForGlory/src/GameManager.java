@@ -276,7 +276,7 @@ public class GameManager extends JPanel{
 				updateClosedPlaces();
 			}
 		}
-		if( winTime == 1){
+		if( winTime == 3){
 			setHealth(100);
 			resetArena();
 			winTime = 0;
